@@ -1,0 +1,23 @@
+﻿@model List<Enfermo>
+
+<h1>index enfermo</h1>
+@if(Model != null){
+    <table class="table table-bordered table-primary table-striped">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Enfermo enf in Model) 
+            {
+                <tr>
+                    <td>@enf.Apellido</td>
+                    <td><a asp-controller="Enfermos" asp-action="Details" asp-route-inscripcion="@enf.Inscripcion" class="btn btn-info">Detalle</a></td>
+                    <td><a asp-controller="Enfermos" asp-action="Delete" asp-route-inscripcion="@enf.Inscripcion" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+            })
+        </tbody>
+    </table>
+}
