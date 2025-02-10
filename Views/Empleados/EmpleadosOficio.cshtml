@@ -1,0 +1,61 @@
+﻿@model ResumenEmpleados
+
+@{
+    List<string> oficios = (List<string>)ViewBag.Oficios;
+}
+
+<h1>Empleados por Oficio</h1>
+
+@* <form method="post"> *@
+@*     <label>Oficio</label> *@
+@*     <input type="text" name="oficio" class="form-control"/> *@
+@*     <button type="submit" class="btn btn-primary">Buscar</button *@
+@* </form> *@
+
+<form method ="post">
+    <label>Oficio: </label>
+    <select name ="oficio"  class="form-control">
+        @foreach (string ofi in oficios)
+        {
+            <option value ="@ofi">
+                @ofi</option>
+        }
+     </select>
+  <button class ="btn btn-info">
+    Buscar empleados
+  </button>
+</form>
+
+@if (Model != null) 
+{
+ <ul class="list-group"> 
+        <li class="list-group-item"> 
+            Personas: @Model.Personas 
+        </li> 
+        <li  class="list-group-item"> 
+            Máximo salario: @Model.MaximoSalario 
+        </li> 
+        <li  class="list-group-item"> 
+            Media salarial: @Model.MediaSalarial 
+        </li> 
+    </ul>
+
+    <table class="table table-striped table-success"> 
+        <thead> 
+            <tr> 
+                <th>Apellido</th> 
+                <th>Oficio</th> 
+                <th>Salario</th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+            @foreach (Empleado  empleado  in Model.Empleados){ 
+                <tr> 
+                    <td>@empleado.Apellido</td> 
+                    <td>@empleado.Oficio</td> 
+                    <td>@empleado.Salario</td> 
+                </tr> 
+            } 
+        </tbody> 
+    </table>
+}
